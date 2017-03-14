@@ -38,6 +38,7 @@ CPM_InitModule(${CPM_MODULE_NAME})
 #------------------------------------------------------------------------------
 
 set(ZLIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/zlib)
+set(ZLIB_BIN_DIR ${CMAKE_CURRENT_BINARY_DIR}/3rdParty/zlib)
 
 CPM_EnsureRepoIsCurrent(
   TARGET_DIR ${ZLIB_DIR}
@@ -110,17 +111,17 @@ if(MSVC)
     include_directories(${ZLIB_DIR})
 endif()
 
-if(NOT ZLIB_DIR STREQUAL CMAKE_CURRENT_BINARY_DIR)
-    # If we're doing an out of source build and the user has a zconf.h
-    # in their source tree...
-    if(EXISTS ${ZLIB_DIR}/zconf.h)
-        message(STATUS "Renaming")
-        message(STATUS "    ${ZLIB_DIR}/zconf.h")
-        message(STATUS "to 'zconf.h.included' because this file is included with zlib")
-        message(STATUS "but CMake generates it automatically in the build directory.")
-        file(RENAME ${ZLIB_DIR}/zconf.h ${ZLIB_DIR}/zconf.h.included)
-  endif()
-endif()
+# if(NOT ZLIB_DIR STREQUAL CMAKE_CURRENT_BINARY_DIR)
+#     # If we're doing an out of source build and the user has a zconf.h
+#     # in their source tree...
+#     if(EXISTS ${ZLIB_DIR}/zconf.h)
+#         message(STATUS "Renaming")
+#         message(STATUS "    ${ZLIB_DIR}/zconf.h")
+#         message(STATUS "to 'zconf.h.included' because this file is included with zlib")
+#         message(STATUS "but CMake generates it automatically in the build directory.")
+#         file(RENAME ${ZLIB_DIR}/zconf.h ${ZLIB_DIR}/zconf.h.included)
+#   endif()
+# endif()
 
 set(ZLIB_PC ${CMAKE_CURRENT_BINARY_DIR}/zlib.pc)
 configure_file( ${ZLIB_DIR}/zlib.pc.cmakein
@@ -266,5 +267,5 @@ endif()
 # endif()
 
 
-CPM_ExportAdditionalIncludeDir(${ZLIB_DIR})
+CPM_ExportAdditionalIncludeDir(${ZLIB_DIR} ${})
 CPM_ExportAdditionalLibraryTarget(z)
