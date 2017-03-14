@@ -37,7 +37,7 @@ CPM_InitModule(${CPM_MODULE_NAME})
 # Native File Dialog
 #------------------------------------------------------------------------------
 
-set(ZLIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/NativeFileDialog)
+set(ZLIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/zlib)
 
 CPM_EnsureRepoIsCurrent(
   TARGET_DIR ${ZLIB_DIR}
