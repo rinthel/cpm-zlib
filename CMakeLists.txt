@@ -267,5 +267,5 @@ endif()
 # endif()
 
 
-CPM_ExportAdditionalIncludeDir(${ZLIB_DIR} ${})
+CPM_ExportAdditionalIncludeDir("${ZLIB_DIR}")
 CPM_ExportAdditionalLibraryTarget(z)
